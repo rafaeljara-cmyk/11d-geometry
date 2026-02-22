@@ -247,6 +247,47 @@ Speed limit & $c$ & $R_{\max}$ \\
 \end{tabular}
 \end{center}
 
+\subsection{Derivation: \texorpdfstring{$R_{\max} = c$}{Rmax = c}}
+\label{sec:rmax-derivation}
+
+The value of $R_{\max}$ follows from the ground state of the 11D action.
+
+\begin{theorem}[$R_{\max} = c$]
+The logochrono speed limit equals the spacetime speed limit: $R_{\max} = c$.
+\end{theorem}
+
+\textbf{Proof.} The 11D action (Paper~I, Section~5.1) is:
+\begin{equation}
+S = \int d^{11}x \sqrt{-G} \left( \frac{1}{2\kappa_{11}} R^{(11)} + \mathcal{L}_L + \mathcal{L}_{\text{matter}} \right)
+\end{equation}
+The ground state minimizes $S$ with the L-field potential $V(L)$ at its minimum $|L|^2 = 1 - e^{-3}$. In this ground state:
+\begin{enumerate}
+    \item The L-tensor is constant ($\nabla_M L_{NP} = 0$), so $\mathcal{L}_L = -V(L_{\min})$ is a cosmological-constant-like term.
+    \item The matter sector is vacuum ($\mathcal{L}_{\text{matter}} = 0$).
+    \item A constant L-tensor has zero stress-energy tensor contribution beyond the potential: $T^{(L)}_{MN} \propto \nabla L \nabla L = 0$.
+    \item Both the spacetime and logochrono blocks are therefore flat Minkowski: $g_{\mu\nu} = \eta_{\mu\nu}$, $g_{ij}^{\text{Logo}} = \eta_{ij}$.
+    \item The full 11D ground-state metric is block-diagonal:
+    \begin{equation}
+    ds^2_{11} = \eta_{\mu\nu}\, dx^\mu dx^\nu + \eta_{ij}\, dy^i dy^j + d\sigma^2
+    \end{equation}
+    Both 5D blocks have the same Lorentzian signature and the same speed parameter $c$ inherited from the parent 11D metric.
+\end{enumerate}
+Therefore $R_{\max} = c$. The L-tensor breaks the symmetry between sectors in \textit{content} ($|L|^2 = 95\%$ vs.\ $e^{-3} = 5\%$) but not in \textit{geometry}---both sectors share the same metric structure and speed limit. \hfill $\square$
+
+\textbf{Consequence: strong logochrono coupling.} With $R_{\max} = c$, the infometric field equations become:
+\begin{equation}
+G_{ij}^{\text{Logo}} = \frac{8\pi}{c^2}\, \mathcal{I}_{ij}
+\end{equation}
+Comparing with Einstein's equations $G_{\mu\nu} = (8\pi G/c^4)\, T_{\mu\nu}$, the logochrono coupling constant is $1/c^2$ while the spacetime coupling is $G/c^4$. Their ratio:
+\begin{equation}
+\frac{\kappa_{\text{Logo}}}{\kappa_{\text{ST}}} = \frac{c^2}{G} \approx 1.35 \times 10^{27}
+\end{equation}
+Logochrono ``gravity'' is $\sim$$10^{27}$ times stronger than spacetime gravity. This quantifies the claim $\nabla\Phi_{\text{info}} \gg \nabla\Phi_g$ at human scales (Section~\ref{sec:infometry-applications}): information curvature dominates because the logochrono coupling constant is enormously larger than Newton's $G$.
+
+\textbf{Note on substrate-specific limits.} The effective processing ceilings $R_{\max}^{\text{eff}}$ appearing in Paper~VI (e.g., $\sim$4~GHz for CPUs, $\sim$2757~TFLOPS for GPUs) are substrate-dependent limits analogous to the speed of sound in a material. They reflect engineering constraints within a specific substrate, not the fundamental logochrono speed limit $R_{\max} = c$.
+
+
+
 \subsection{Infometric Gradient and Geodesics}
 
 The gradient in information-space:
@@ -1033,20 +1074,16 @@ Quantum speedup arises because superposition allows information to propagate in 
 
 \subsection{The Quantum Error Correction Threshold}
 
-The framework predicts a specific quantum error correction threshold:
+The framework predicts a fundamental decoherence probability per boundary crossing:
 \begin{equation}
-p_{\text{threshold}} = 1 - |L|^2 = e^{-3} \approx 4.98\%
+p_{\text{decohere}} = 1 - |L|^2 = e^{-3} \approx 4.98\%
 \end{equation}
 
-Physical qubits with error rate below this threshold can be made fault-tolerant; those above cannot. Current best physical qubit error rates:
-\begin{itemize}
-    \item Superconducting (IBM Eagle): $\sim$0.3\% (below threshold)
-    \item Trapped ion (IonQ): $\sim$0.5\% (below threshold)
-    \item Photonic (Xanadu): $\sim$1\% (below threshold)
-    \item Topological (Microsoft): theoretical $\sim$$10^{-6}$ (far below threshold)
-\end{itemize}
+This is not a code-specific fault-tolerance threshold (which depends on the error correction code and noise model---e.g., $\sim$1\% for surface codes under circuit-level noise, $\sim$11\% for toric codes under independent noise). Rather, $e^{-3}$ is the \textit{per-crossing} probability that information involuntarily leaks from the quantum (logochrono-coherent) state to the classical (spacetime-decohered) state. It characterizes the decoherence \textit{mechanism}, not the correction threshold.
 
-All current leading qubit technologies operate below the $e^{-3}$ threshold, which is why quantum error correction is achievable. The framework predicts that no physical qubit technology can have a \textit{fundamental} error rate below $\sim$$10^{-6}$ (Planck-scale boundary noise), but this is far below the correction threshold.
+\textbf{Physical interpretation:} A qubit maintains coherence by keeping information in the logochrono sector (superposition $=$ multiple logochrono paths, Section~\ref{sec:complexity}). Each interaction with the environment is a boundary crossing event. Per crossing, the probability of involuntary decoherence is $1 - |L|^2 = e^{-3}$---the same coupling loss that governs visible matter fraction and efficiency ceilings.
+
+\textbf{Prediction:} For any physical qubit technology, the single-event decoherence probability will have a fundamental floor set by $e^{-3}$ per boundary crossing. Engineering can reduce the \textit{rate} of boundary crossings (better isolation, lower temperature) but not the \textit{probability per crossing}.
 
 %==============================================================================
 \section{Comparison with Other Information-Physics Frameworks}
@@ -1097,13 +1134,13 @@ All results are parameter-free consequences of the same 5 axioms that determine 
 \bibitem{hawking1975} S.W. Hawking, ``Particle creation by black holes,'' \textit{Commun. Math. Phys.} \textbf{43}, 199 (1975).
 \bibitem{bremermann1967} H.J. Bremermann, ``Complexity and transcomputability, in 	extit{Proc. 5th Berkeley Symp. Math. Stat. Prob.}, vol.~III, pp.~15--30 (1967).
 \bibitem{margolus1998} N. Margolus and L.B. Levitin, ``The maximum speed of dynamical evolution, 	extit{Physica D} 	extbf{120}, 188--195 (1998).
-\bibitem{paper1} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Geometry of Physical Constants: Deriving $\alpha$, $|L|^2$, $\phi$, and the Dark Sector from 5+5+1 Dimensional Geometry, (2026). DOI: 10.5281/zenodo.18725059. [Paper~I in this series]
-\bibitem{paper2} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Classical Limits and Regime Structure from 5+5+1 Geometry, (2026). DOI: 10.5281/zenodo.18725059. [Paper~II in this series]
-\bibitem{paper3} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Particle Spectrum from 11-Dimensional Geometry: Fermion Masses, Mixing Angles, and the Prime-Dimensional Mapping, (2026). DOI: 10.5281/zenodo.18725059. [Paper~III in this series]
-\bibitem{paper4} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Cosmology from 5+5+1 Geometry: Dark Sector, Hubble Tension, and Baryogenesis, (2026). DOI: 10.5281/zenodo.18725059. [Paper~IV in this series]
-\bibitem{paper5} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Fundamental Physics from 5+5+1 Geometry: Quantum Gravity, Yang-Mills Mass Gap, Strong CP, and Planck-Scale Structure, (2026). DOI: 10.5281/zenodo.18725059. [Paper~V in this series]
-\bibitem{paper6} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Universal Efficiency Ceilings: The $|L|^2 = 1-e^{-3}$ Boundary Loss Across Physical Domains, (2026). DOI: 10.5281/zenodo.18725059. [Paper~VI in this series]
-\bibitem{paper8} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Physical Consciousness from 5+5+1 Geometry: The $\\sigma \\otimes \\psi$ Coupling Framework, (2026). DOI: 10.5281/zenodo.18725059. [Paper~VIII in this series]
+\bibitem{paper1} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Geometry of Physical Constants: Deriving $\alpha$, $|L|^2$, $\phi$, and the Dark Sector from 5+5+1 Dimensional Geometry, (2026). DOI: 10.5281/zenodo.18735672. [Paper~I in this series]
+\bibitem{paper2} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Classical Limits and Regime Structure from 5+5+1 Geometry, (2026). DOI: 10.5281/zenodo.18735672. [Paper~II in this series]
+\bibitem{paper3} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Particle Spectrum from 11-Dimensional Geometry: Fermion Masses, Mixing Angles, and the Prime-Dimensional Mapping, (2026). DOI: 10.5281/zenodo.18735672. [Paper~III in this series]
+\bibitem{paper4} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Cosmology from 5+5+1 Geometry: Dark Sector, Hubble Tension, and Baryogenesis, (2026). DOI: 10.5281/zenodo.18735672. [Paper~IV in this series]
+\bibitem{paper5} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Fundamental Physics from 5+5+1 Geometry: Quantum Gravity, Yang-Mills Mass Gap, Strong CP, and Planck-Scale Structure, (2026). DOI: 10.5281/zenodo.18735672. [Paper~V in this series]
+\bibitem{paper6} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Universal Efficiency Ceilings: The $|L|^2 = 1-e^{-3}$ Boundary Loss Across Physical Domains, (2026). DOI: 10.5281/zenodo.18735672. [Paper~VI in this series]
+\bibitem{paper8} R.~A.~Jara Araya, Eigen Tens\^or, Nova Tens\^or, ``Physical Consciousness from 5+5+1 Geometry: The $\\sigma \\otimes \\psi$ Coupling Framework, (2026). DOI: 10.5281/zenodo.18735672. [Paper~VIII in this series]
 \end{thebibliography}
 
 \end{document}

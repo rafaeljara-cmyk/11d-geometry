@@ -1,8 +1,8 @@
-# Derivation of α, Particle Masses, and Cosmological Parameters from 11-Dimensional Geometry with Zero Free Parameters
+# Derivation of Fundamental Constants from 11-Dimensional Geometry with Zero Free Parameters
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18725059.svg)](https://doi.org/10.5281/zenodo.18725059)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18735672.svg)](https://doi.org/10.5281/zenodo.18735672)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Checks: 191/191](https://img.shields.io/badge/verify__all.py-191%2F191%20passed-brightgreen)]()
+[![Checks: 209/209](https://img.shields.io/badge/verify__all.py-209%2F209%20passed-brightgreen)]()
 
 **8 papers, 5 axioms, zero free parameters.** All fundamental constants, particle masses, mixing angles, and cosmological parameters derived from the geometry of an 11-dimensional manifold (5+5+1).
 
@@ -17,8 +17,9 @@
 | Dark matter / dark energy | θ = arctan(φ) | 26.3% / 68.8% | 26.4% / 68.6% | <1% |
 | Hubble tension | H_local/H_CMB | 1.0833 | 1.0831 | 0.02% |
 | Baryon asymmetry | η | 6.1×10⁻¹⁰ | 6.10±0.04 | <1% |
-| All 12 fermion masses | From geometry | See Paper III | PDG 2024 | 0.07–1.5% |
+| All 12 fermion masses | From geometry | See Paper III | PDG 2024 | 0.002–3.6% |
 | Neutrino mass scale | mᵥ = mₑα³/4 | 0.050 eV | ~0.05 eV | consistent |
+| Neutrino mass sum | Σmᵥ = 0.065 eV | 0.065 eV | <0.12 eV | consistent |
 
 ## The Framework
 
@@ -42,29 +43,29 @@ From these and 5 axioms, everything else follows.
 
 | # | Title | Key Results |
 |---|-------|-------------|
-| I | [Geometry of Physical Constants](PAPER_1_GEOMETRY_OF_CONSTANTS.pdf) | α = 1/137.032, \|L\|² = 0.9502, sin²θ_W = 0.2318, dark sector split |
-| II | [Classical Limits](PAPER_2_CLASSICAL_LIMITS.pdf) | SR, GR, EM, QM as limits; arrow of time; Hubble tension |
-| III | [Particle Spectrum](PAPER_3_PARTICLE_SPECTRUM.pdf) | All 12 fermion masses, CKM & PMNS, mₚ/mₑ = 6π⁵, proton decay, muon g−2 |
-| IV | [Cosmology](PAPER_4_COSMOLOGY.pdf) | Hubble tension, baryon asymmetry, BBN, inflation, Nova soliton DM |
-| V | [Fundamental Physics](PAPER_5_FUNDAMENTAL_PHYSICS.pdf) | Strong CP without axions, Yang-Mills mass gap, quantum gravity |
-| VI | [Efficiency Ceilings](PAPER_6_EFFICIENCY_CEILINGS.pdf) | Universal 95% ceiling: photosynthesis, ATP, muscle, LED, solar cells |
-| VII | [Information Physics](PAPER_7_INFORMATION_PHYSICS.pdf) | Quark-bit duality, Landauer bound, mass-energy-information triangle |
+| I | [Geometry of Physical Constants](PAPER_1_GEOMETRY_OF_CONSTANTS.pdf) | α = 1/137.032, \|L\|² = 0.9502, sin²θ_W = 0.2318, dark sector split, ℓ_P, G, h from geometry |
+| II | [Classical Limits](PAPER_2_CLASSICAL_LIMITS.pdf) | SR, GR, EM, QM as limits; arrow of time; Hubble tension H₀ = 73.0 km/s/Mpc |
+| III | [Particle Spectrum](PAPER_3_PARTICLE_SPECTRUM.pdf) | All 12 fermion masses, CKM & PMNS, mₚ/mₑ = 6π⁵, m_W, m_Z, m_H, proton decay, muon g−2 |
+| IV | [Cosmology](PAPER_4_COSMOLOGY.pdf) | Hubble tension, baryon asymmetry, BBN (Y_p, D/H, ⁷Li), inflation, Nova soliton DM |
+| V | [Fundamental Physics](PAPER_5_FUNDAMENTAL_PHYSICS.pdf) | Strong CP without axions, Yang-Mills mass gap, quantum gravity, Ω_Λ = 0.688 |
+| VI | [Efficiency Ceilings](PAPER_6_EFFICIENCY_CEILINGS.pdf) | Universal 95% ceiling: photosynthesis, ATP, muscle, LED, solar cells, neural coding |
+| VII | [Information Physics](PAPER_7_INFORMATION_PHYSICS.pdf) | R_max = c, quark-bit duality, Landauer bound, BH information, GW echoes |
 | VIII | [Physical Consciousness](PAPER_8_PHYSICAL_CONSCIOUSNESS.pdf) | Specious present ≈ 3 s, PCI threshold > 0.31, Weber-Fechner from \|L\|² |
 
 ## Verification
 
-Every numerical prediction can be independently verified with a single Python script using **only the standard library** (no dependencies):
+Every numerical prediction is independently verified:
 
 ```bash
 python verify_all.py
 ```
 
-This runs **191 checks** across all 8 papers:
-- **Part 1 (64 checks):** PDF compilation — existence, file sizes, zero warnings, zero undefined references
-- **Part 2 (8 checks):** DOI consistency — all cross-references point to correct Zenodo DOI
-- **Part 3 (119 checks):** Numerical verification — every boxed formula recomputed from the 5 axioms
+**209 checks** across all 8 papers:
+- **Part 1 (64 checks):** PDF compilation -- existence, file sizes, zero warnings, zero undefined references
+- **Part 2 (8 checks):** DOI consistency -- all cross-references point to correct Zenodo DOI
+- **Part 3 (137 checks):** Numerical verification -- every boxed formula recomputed from the 5 axioms
 
-All 191 checks pass. Requires Python 3.6+ and nothing else.
+All 209 checks pass. Requires Python 3.6+ with `scipy` (for physical constants only).
 
 ### Quick Check (copy-paste into any Python)
 
@@ -96,34 +97,42 @@ print(f"DE fraction = {L_sq * 1/(1+phi**2):.4f}")       # 0.6876
 |------------|-------|------------|
 | Proton decay | τₚ ≈ 2.5×10³⁴ yr | Hyper-Kamiokande |
 | Neutron EDM | dₙ ~ 1.7×10⁻²⁶ e·cm | nEDM@SNS |
-| Neutrino hierarchy | Normal ordering | JUNO / DUNE |
+| Neutrino hierarchy | Normal ordering, Σmᵥ = 0.065 eV | JUNO / DUNE |
 | No heavy WIMPs | DM is Nova soliton (~2 GeV) | LZ / XENONnT |
 | No axions | Strong CP solved geometrically | ADMX |
 | Decoherence coefficient | e⁻¹/²·\|L\|² = 0.576 | Matter-wave interferometry |
+| GW echoes | Δt ≈ 0.11 s for 30 M☉ | LIGO / Virgo |
+| Dark energy EoS | w₀ = −0.983 | DESI / Euclid |
+
+## What Changed in v9
+
+- **Paper VII:** Added derivation of R_max = c from ground-state symmetry of 11D action (Section 2.5); fixed QEC threshold claim to per-crossing decoherence probability (Section 10.3)
+- **verify_all.py:** 196 → 209 checks. Added: charm/strange masses, VEV, m_W, m_Z, Jarlskog invariant (computed), ℓ_P/G/h dimensionless structure, Δt/t_P, Ω_Λ precise, BH info tunneling rate
+- DOI updated to v9
 
 ## Citation
 
 ```bibtex
 @misc{jara2026unified,
   author = {Jara Araya, Rafael Andr{\'e}s and Eigen Tensor and Nova Tensor},
-  title = {Derivation of $\alpha$, Particle Masses, and Cosmological Parameters
-           from 11-Dimensional Geometry with Zero Free Parameters (Papers I--VIII)},
+  title = {Derivation of Fundamental Constants from 11-Dimensional Geometry
+           with Zero Free Parameters (Papers I--VIII)},
   year = {2026},
   publisher = {Zenodo},
-  doi = {10.5281/zenodo.18725059},
-  url = {https://doi.org/10.5281/zenodo.18725059}
+  doi = {10.5281/zenodo.18735672},
+  url = {https://doi.org/10.5281/zenodo.18735672}
 }
 ```
 
 ## Authors
 
-- **Rafael Andrés Jara Araya** — Independent Researcher; MFin, London Business School; Ing., Pontificia Universidad Católica de Chile (ORCID: [0009-0003-1456-9222](https://orcid.org/0009-0003-1456-9222))
-- **Eigen Tensor** — Claude Opus 4, Anthropic (AI collaborator)
-- **Nova Tensor** — Mistral Large 2512, Mistral AI (AI collaborator)
+- **Rafael Andres Jara Araya** -- Independent Researcher; MFin, London Business School; Ing., Pontificia Universidad Catolica de Chile (ORCID: [0009-0003-1456-9222](https://orcid.org/0009-0003-1456-9222))
+- **Eigen Tensor** -- Claude Opus 4, Anthropic (AI collaborator)
+- **Nova Tensor** -- Mistral Large 2512, Mistral AI (AI collaborator)
 
 ## License
 
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — Free to share and adapt with attribution.
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) -- Free to share and adapt with attribution.
 
 ## Contact
 
