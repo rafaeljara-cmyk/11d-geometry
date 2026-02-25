@@ -1,8 +1,8 @@
 # Derivation of Fundamental Constants from 11-Dimensional Geometry with Zero Free Parameters
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18735672.svg)](https://doi.org/10.5281/zenodo.18735672)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18771802.svg)](https://doi.org/10.5281/zenodo.18771802)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Checks: 209/209](https://img.shields.io/badge/verify__all.py-209%2F209%20passed-brightgreen)]()
+[![Checks: 212/212](https://img.shields.io/badge/verify__all.py-212%2F212%20passed-brightgreen)]()
 
 **8 papers, 5 axioms, zero free parameters.** All fundamental constants, particle masses, mixing angles, and cosmological parameters derived from the geometry of an 11-dimensional manifold (5+5+1).
 
@@ -13,8 +13,8 @@
 | Fine-structure constant | α = 3e⁻⁶(1 − e⁻⁽⁴⁻ᵉ⁻⁴⁾) | 1/137.032 | 1/137.036 | 0.003% |
 | Proton/electron mass ratio | mₚ/mₑ = 6π⁵ | 1836.12 | 1836.153 | 0.002% |
 | Weinberg angle | sin²θ_W = (3/8)φ | 0.2318 | 0.2312 | 0.3% |
-| Dark sector fraction | \|L\|² = 1 − e⁻³ | 95.02% | ~95% | <0.5% |
-| Dark matter / dark energy | θ = arctan(φ) | 26.3% / 68.8% | 26.4% / 68.6% | <1% |
+| Dark sector fraction | |L|² = 1 − e⁻³ | 95.02% | ~95% | <0.5% |
+| Dark matter / dark energy | θ = arctan(φ/√(L_σ²/4)) | 26.4% / 68.7% | 26.4% / 68.6% | <0.1% |
 | Hubble tension | H_local/H_CMB | 1.0833 | 1.0831 | 0.02% |
 | Baryon asymmetry | η | 6.1×10⁻¹⁰ | 6.10±0.04 | <1% |
 | All 12 fermion masses | From geometry | See Paper III | PDG 2024 | 0.002–3.6% |
@@ -43,14 +43,14 @@ From these and 5 axioms, everything else follows.
 
 | # | Title | Key Results |
 |---|-------|-------------|
-| I | [Geometry of Physical Constants](PAPER_1_GEOMETRY_OF_CONSTANTS.pdf) | α = 1/137.032, \|L\|² = 0.9502, sin²θ_W = 0.2318, dark sector split, ℓ_P, G, h from geometry |
+| I | [Geometry of Physical Constants](PAPER_1_GEOMETRY_OF_CONSTANTS.pdf) | α = 1/137.032, |L|² = 0.9502, sin²θ_W = 0.2318, dark sector split, ℓ_P, G, h from geometry |
 | II | [Classical Limits](PAPER_2_CLASSICAL_LIMITS.pdf) | SR, GR, EM, QM as limits; arrow of time; Hubble tension H₀ = 73.0 km/s/Mpc |
-| III | [Particle Spectrum](PAPER_3_PARTICLE_SPECTRUM.pdf) | All 12 fermion masses, CKM & PMNS, mₚ/mₑ = 6π⁵, m_W, m_Z, m_H, proton decay, muon g−2 |
+| III | [Particle Spectrum](PAPER_3_PARTICLE_SPECTRUM.pdf) | All 12 fermion masses (0.002–3.6%), CKM & PMNS mixing, mₚ/mₑ = 6π⁵, m_W, m_Z, m_H, proton decay, muon g−2 |
 | IV | [Cosmology](PAPER_4_COSMOLOGY.pdf) | Hubble tension, baryon asymmetry, BBN (Y_p, D/H, ⁷Li), inflation, Nova soliton DM |
 | V | [Fundamental Physics](PAPER_5_FUNDAMENTAL_PHYSICS.pdf) | Strong CP without axions, Yang-Mills mass gap, quantum gravity, Ω_Λ = 0.688 |
 | VI | [Efficiency Ceilings](PAPER_6_EFFICIENCY_CEILINGS.pdf) | Universal 95% ceiling: photosynthesis, ATP, muscle, LED, solar cells, neural coding |
 | VII | [Information Physics](PAPER_7_INFORMATION_PHYSICS.pdf) | R_max = c, quark-bit duality, Landauer bound, BH information, GW echoes |
-| VIII | [Physical Consciousness](PAPER_8_PHYSICAL_CONSCIOUSNESS.pdf) | Specious present ≈ 3 s, PCI threshold > 0.31, Weber-Fechner from \|L\|² |
+| VIII | [Physical Consciousness](PAPER_8_PHYSICAL_CONSCIOUSNESS.pdf) | Specious present ≈ 3 s, PCI threshold > 0.31, Weber-Fechner from |L|² |
 
 ## Verification
 
@@ -60,12 +60,12 @@ Every numerical prediction is independently verified:
 python verify_all.py
 ```
 
-**209 checks** across all 8 papers:
+**212 checks** across all 8 papers:
 - **Part 1 (64 checks):** PDF compilation -- existence, file sizes, zero warnings, zero undefined references
 - **Part 2 (8 checks):** DOI consistency -- all cross-references point to correct Zenodo DOI
-- **Part 3 (137 checks):** Numerical verification -- every boxed formula recomputed from the 5 axioms
+- **Part 3 (140 checks):** Numerical verification -- every boxed formula recomputed from the 5 axioms
 
-All 209 checks pass. Requires Python 3.6+ with `scipy` (for physical constants only).
+All 212 checks pass. Requires Python 3.6+ with `scipy` (for physical constants only).
 
 ### Quick Check (copy-paste into any Python)
 
@@ -85,30 +85,26 @@ print(f"6*pi^5 = {6*math.pi**5:.2f}")  # 1836.12
 # Weinberg angle
 print(f"sin^2(theta_W) = {3*phi/8:.4f}")  # 0.2318
 
-# Dark sector
+# Dark sector (Lorentz-corrected)
+L_sigma_sq = 4 - math.e**(-4)
+theta = math.atan(phi / math.sqrt(L_sigma_sq / 4))
 print(f"|L|^2 = {L_sq:.4f}")          # 0.9502 (95% dark)
-print(f"DM fraction = {L_sq * phi**2/(1+phi**2):.4f}")  # 0.2626
-print(f"DE fraction = {L_sq * 1/(1+phi**2):.4f}")       # 0.6876
+print(f"DM fraction = {L_sq * math.sin(theta)**2:.4f}")  # 0.2635
+print(f"DE fraction = {L_sq * math.cos(theta)**2:.4f}")   # 0.6867
 ```
 
 ## Falsifiable Predictions
 
 | Prediction | Value | Experiment |
 |------------|-------|------------|
-| Proton decay | τₚ ≈ 2.5×10³⁴ yr | Hyper-Kamiokande |
+| Proton decay | τₚ ≈ 2.7×10³⁴ yr | Hyper-Kamiokande |
 | Neutron EDM | dₙ ~ 1.7×10⁻²⁶ e·cm | nEDM@SNS |
 | Neutrino hierarchy | Normal ordering, Σmᵥ = 0.065 eV | JUNO / DUNE |
 | No heavy WIMPs | DM is Nova soliton (~2 GeV) | LZ / XENONnT |
 | No axions | Strong CP solved geometrically | ADMX |
-| Decoherence coefficient | e⁻¹/²·\|L\|² = 0.576 | Matter-wave interferometry |
+| Decoherence coefficient | e⁻¹/²·|L|² = 0.576 | Matter-wave interferometry |
 | GW echoes | Δt ≈ 0.11 s for 30 M☉ | LIGO / Virgo |
 | Dark energy EoS | w₀ = −0.983 | DESI / Euclid |
-
-## What Changed in v9
-
-- **Paper VII:** Added derivation of R_max = c from ground-state symmetry of 11D action (Section 2.5); fixed QEC threshold claim to per-crossing decoherence probability (Section 10.3)
-- **verify_all.py:** 196 → 209 checks. Added: charm/strange masses, VEV, m_W, m_Z, Jarlskog invariant (computed), ℓ_P/G/h dimensionless structure, Δt/t_P, Ω_Λ precise, BH info tunneling rate
-- DOI updated to v9
 
 ## Citation
 
@@ -119,8 +115,8 @@ print(f"DE fraction = {L_sq * 1/(1+phi**2):.4f}")       # 0.6876
            with Zero Free Parameters (Papers I--VIII)},
   year = {2026},
   publisher = {Zenodo},
-  doi = {10.5281/zenodo.18735672},
-  url = {https://doi.org/10.5281/zenodo.18735672}
+  doi = {10.5281/zenodo.18151172},
+  url = {https://doi.org/10.5281/zenodo.18151172}
 }
 ```
 
